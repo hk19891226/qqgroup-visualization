@@ -11,6 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+        "/api": {
+            target: "http://localhost:10241/",
+            changeOrigin: true,
+            secure: false,
+        },
         "/qqimg": {
             target: "http://q2.qlogo.cn/",
             changeOrigin: true,
