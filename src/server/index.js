@@ -9,12 +9,7 @@ const fs = require("fs");
 //服务端端口
 const serverPort = 10241;
 //数据库连接配置信息
-const config = {
-    server: "123.206.204.118",
-    database: "QQGroup",
-    user: "sa",
-    password: "gu@shi$hao^1993*",
-};
+const config = require("../../db.json");
 
 //404中间件
 function hold404 (ctx, next) {
