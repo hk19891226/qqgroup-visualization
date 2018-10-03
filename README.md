@@ -1,6 +1,6 @@
 # qqgroup-visualization
 
-> A Vue.js project
+> QQ群关系数据客查询（表格版）
 
 ## Build Setup
 
