@@ -3,11 +3,6 @@
 > QQ群关系数据客查询（表格版）
 
 ## 使用方法
-
-## 效果图
-![查询QQ号](https://github.com/gstok/qqgroup-visualization/blob/table/img/1.png)
-![查询群号](https://github.com/gstok/qqgroup-visualization/blob/table/img/2.png)
-
 ``` bash
 # install dependencies
 npm install
@@ -18,4 +13,7 @@ npm install
 5.npm run start
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 效果图
+![查询QQ号](https://github.com/gstok/qqgroup-visualization/blob/table/img/1.png)
+
+![查询群号](https://github.com/gstok/qqgroup-visualization/blob/table/img/2.png)
