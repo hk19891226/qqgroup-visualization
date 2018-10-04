@@ -71,9 +71,23 @@
                         result = await api.queryGroupGraph(this.searchNum);
                     }
                     if (result) {
-                        let groupList = result.group.map(item => ({ id: item.groupNum, group: item }));
-                        let memberList = result.member.map(item => ({ id: item.memberQQNum, member: item }));
-                        let linkList = result.link.map(item => ({ source: item.linkQQNum, target: item.linkGroupNum, link: item }));
+                        console.log(result);
+                        let groupList = result.group.map(item => ({
+                            id: item.groupNum,
+                            name: item.groupTitle,
+                            group: item,
+                        }));
+                        let memberList = result.member.map(item => ({
+                            id: item.memberQQNum,
+                            name: item.memberQQNum,
+                            member: item,
+                        }));
+                        let linkList = result.link.map(item => ({
+                            source: item.linkQQNum,
+                            target: item.linkGroupNum,
+                            name: item.linkNick,
+                            link: item,
+                        }));
                         let gData = {
                             nodes: groupList.concat(memberList),
                             links: linkList,
