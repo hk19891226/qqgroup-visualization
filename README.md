@@ -4,12 +4,9 @@
 
 ## 使用方法
 ```
-npm install
-1.安装SqlServer2008R2
-2.下载数据库备份文件
-3.恢复数据库到SqlServer
-4.修改db.json，配置自己的数据库连接信息
-5.npm run start
+因为数据库是SqlServer2008，所以推荐使用Windows7以上操作系统
++ 下载安装SqlServer2008
++ 下载数据库备份，恢复数据库到SqlServer2008
 ```
 
 ## 效果图
