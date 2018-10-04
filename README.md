@@ -5,7 +5,7 @@
 ## 使用方法
 
 ## 效果图
-![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
+![效果图](https://github.com/gstok/qqgroup-visualization/blob/table/img/1.png)
 
 ``` bash
 # install dependencies
