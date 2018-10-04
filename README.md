@@ -4,6 +4,9 @@
 
 ## 使用方法
 
+## 效果图
+![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
+
 ``` bash
 # install dependencies
 npm install
