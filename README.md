@@ -3,8 +3,7 @@
 > QQ群关系数据客查询（表格版）
 
 ## 使用方法
-``` bash
-# install dependencies
+```
 npm install
 1.安装SqlServer2008R2
 2.下载数据库备份文件
