@@ -23,6 +23,7 @@
 <script>
     import api from "@/api";
     import ForceGraph3D from "3d-force-graph";
+    import SpriteText from "three-spritetext";
 
     export default {
         name: "viewGraph3d",
@@ -74,11 +75,13 @@
                         console.log(result);
                         let groupList = result.group.map(item => ({
                             id: item.groupNum,
+                            type: "group",
                             name: item.groupTitle,
                             group: item,
                         }));
                         let memberList = result.member.map(item => ({
                             id: item.memberQQNum,
+                            type: "member",
                             name: item.memberQQNum,
                             member: item,
                         }));
@@ -92,7 +95,28 @@
                             nodes: groupList.concat(memberList),
                             links: linkList,
                         };
-                        this.graph.graphData(gData);
+                        this.graph.graphData(gData)
+                        .nodeAutoColorBy('id')
+                        .nodeThreeObject(node => {
+                            let text = "";
+                            if (node.type == "group") {
+                                text = node.group.groupTitle;
+                            }
+                            else if (node.type == "member") {
+                                let link = linkList.find(link => link.source == node.member.memberQQNum);
+                                if (link) {
+                                    text = link.link.linkNick;
+                                }
+                                else {
+                                    text = node.member.memberQQNum;
+                                }
+                            }
+                            const sprite = new SpriteText(text);
+                            sprite.color = node.color;
+                            // sprite.color = node.color;
+                            sprite.textHeight = 8;
+                            return sprite;
+                        });
                     }
                 },
             //#endregion

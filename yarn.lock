@@ -5736,6 +5736,10 @@ three-render-objects@^1.0.6:
     three-trackballcontrols "^0.0.7"
     tinycolor2 "^1.4.1"
 
+three-spritetext@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/three-spritetext/-/three-spritetext-1.0.6.tgz#917cb460ac5fec8d4618f8712f7718da1df1ba87"
+
 three-trackballcontrols@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/three-trackballcontrols/-/three-trackballcontrols-0.0.7.tgz#42cae1f6856d5f889eaae3a0e2fca9d214793e91"
