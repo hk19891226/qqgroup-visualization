@@ -4,15 +4,34 @@ import Http from "../http";
 async function api_queryQQGraph (qqNum) {
     let reqUrl = `/api/qq/${ qqNum }`;
     let response = await Http.fetch(reqUrl);
-    console.log(response);
+    if (response.code == 200) {
+        return response.data;
+    }
+    else {
+        return null;
+    }
 }
 
 async function api_queryQQExtGraph (qqNum) {
-
+    let reqUrl = `/api/qqext/${ qqNum }`;
+    let response = await Http.fetch(reqUrl);
+    if (response.code == 200) {
+        return response.data;
+    }
+    else {
+        return null;
+    }
 }
 
 async function api_queryGroupGraph (groupNum) {
-
+    let reqUrl = `/api/group/${ groupNum }`;
+    let response = await Http.fetch(reqUrl);
+    if (response.code == 200) {
+        return response.data;
+    }
+    else {
+        return null;
+    }
 }
 
 async function api_queryQQTable (qqNum) {
