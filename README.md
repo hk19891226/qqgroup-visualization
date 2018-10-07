@@ -35,3 +35,6 @@
         + queryByQQNumExt 传入QQ号进行二层关联查询，得出力导向图数据
         + queryTableByGroupNum 传入群号查询群成员信息表
         + queryTableByQQNum 传入QQ号查询QQ加群信息表
+        
+## 联系
++ QQ：1982775886
