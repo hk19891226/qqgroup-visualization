@@ -6,16 +6,17 @@
 ## QQ群关系可视化查询，3D力导向图
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
 
-## 配置数据库（需要磁盘剩余300GB空间）
-+ 下载安装SqlServer2008R2
+## 配置数据库（需要300GB以上磁盘剩余空间）
++ 下载安装SqlServer2008R2，配置好用户名以及密码，必要时需配置数据库允许远传登录
 + 下载[数据库备份文件](https://pan.baidu.com/s/1bz36WurfQIuyBRykyqXBug)
-+ 恢复数据库到本机
++ 解压压缩包，恢复数据库备份文件到SqlServer
 
 ## 搭建服务端
 + 下载安装Node.js环境
 + npm全局安装webpack和webpack-dev-server
 
 ## 运行
++ 进入项目目录
 + npm install
 + npm run start
 
@@ -23,11 +24,8 @@
 + 因为使用的数据库是SqlServer数据库，所以推荐使用Windows操作系统
 + 当然服务端使用的是Node，如果你连接到的是远程的SqlServer数据库的话，是可以使用任何支持Node的系统的
 
-## 数据库要求
-+ 数据库请使用SqlServer2008R2
-+ 数据库备份文件：[下载地址](https://pan.baidu.com/s/1bz36WurfQIuyBRykyqXBug)
-+ 数据库解压之后100GB，需要不低于300GB的磁盘剩余空间来解压文件以及恢复数据库
-+ 数据库备份文件下载完成之后请恢复到自己的SqlServer之中
+## 数据库说明
++ 数据库请使用SqlServer2008R2或更新版本的SqlServer
 + 数据库说明
     + 索引说明
         + 我没有修改数据，只是在QQ号字段以及群号字段上加了索引用来优化查询速度
