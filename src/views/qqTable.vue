@@ -132,7 +132,7 @@
             };
         },
         watch: {
-
+            "$route": "handleRouteChange",
         },
         computed: {
             //#region 常量计算属性
@@ -146,6 +146,13 @@
         },
         methods: {
             //#region 页面事件方法
+                handleRouteChange (nv) {
+                    this.searchNum = this.$route.params.num;
+                    if (!this.searchNum) {
+                        this.searchNum = "10001";
+                    }
+                    this.b_updateTable();
+                },
             //#endregion
 
             //#region 业务逻辑方法
