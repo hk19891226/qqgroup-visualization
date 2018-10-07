@@ -99,6 +99,8 @@
             return {
                 //#region 页面对象
                     graph: null,
+
+                    cvs: null,
                 //#endregion
 
                 //#region 页面内容绑定数据
@@ -206,6 +208,13 @@
                     ctx.drawImage(img, 0, 0, 100, 100);
                     ctx.drawImage(img, 100, 0, 100, 100);
                 },
+
+                //根据图像生成适用于贴图的Canvas
+                buildCanvas (img) {
+                    let cvs = this.createCanvas();
+                    this.drawImgToCanvas(img, cvs);
+                    return cvs;
+                },
             //#endregion
 
             //#region 数据转换方法
@@ -284,16 +293,19 @@
                 },
 
                 headBall (node) {
+                    let texture = new THREE.Texture(this.cvs);
                     //新建标准网孔材质
                     let ballMat = new THREE.MeshStandardMaterial( {
                         color: "white",
                         roughness: 0.4,
                         metalness: 0.4,
+                        map: texture,
                     });
+                    texture.needsUpdate = true;
                     let ballGeometry = new THREE.SphereGeometry(3, 32, 32);
                     let ballMesh = new THREE.Mesh(ballGeometry, ballMat);
                     ballMesh.rotation.y = Math.PI;
-                    return ballMesh;                   
+                    return ballMesh;
                 },
             //#endregion
 
@@ -303,7 +315,7 @@
             //#region 其他方法
             //#endregion
         },
-        created () {
+        async created () {
             this.searchType = this.$route.query.search;
             if (!this.searchType) {
                 this.searchType = "qq";
@@ -312,6 +324,10 @@
             if (!this.searchNum) {
                 this.searchNum = "10001";
             }
+
+            let img = await this.getImg(this.qqImgUrl("1982775886"));
+            this.cvs = this.buildCanvas(img);
+
             this.b_updateGraph();
         },
         mounted () {
