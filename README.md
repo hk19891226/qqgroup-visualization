@@ -7,7 +7,7 @@
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
 
 ## 配置数据库（需要300GB以上磁盘剩余空间）
-+ 下载安装SqlServer2008R2，配置好用户名以及密码，必要时需配置数据库允许远传登录
++ 下载安装[SqlServer2008R2](ed2k://%7Cfile%7Ccn_sql_server_2008_r2_standard_x86_x64_ia64_dvd_522239.iso%7C4662884352%7C18EB3AE3828811617488F2CE8E5B8420%7C/)，配置好用户名以及密码，必要时需配置数据库允许远传登录
 + 下载[数据库备份文件](https://pan.baidu.com/s/1bz36WurfQIuyBRykyqXBug)
 + 解压压缩包，恢复数据库备份文件到SqlServer
 
