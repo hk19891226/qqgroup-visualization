@@ -86,6 +86,7 @@
 
 <script>
     import api from "@/api";
+    import * as THREE from "three";
     import ForceGraph3D from "3d-force-graph";
     import SpriteText from "three-spritetext";
 
@@ -142,12 +143,13 @@
                         .linkSource("sourceId")
                         .linkTarget("targetId")
                         .nodeAutoColorBy("nodeId")
-                        // .nodeThreeObject(node => {
-                        //     const sprite = new SpriteText(node.nodeLabel);
-                        //     sprite.color = node.color;
-                        //     sprite.textHeight = 8;
-                        //     return sprite;
-                        // })
+                        .nodeThreeObject(node => {
+                            // const sprite = new SpriteText(node.nodeLabel);
+                            // sprite.color = node.color;
+                            // sprite.textHeight = 8;
+                            // return sprite;
+                            return this.headBall(node);
+                        })
                         .nodeLabel(node => {
                             let imgUrl = "";
                             if (node.nodeType == "group") {
@@ -185,6 +187,24 @@
                             reject();
                         }
                     });
+                },
+
+                //新建一个用于绘制图像的Canvas
+                createCanvas () {
+                    let canvas = document.createElement("canvas");
+                    canvas.width = 200;
+                    canvas.height = 100;
+                    let ctx = canvas.getContext("2d");
+                    ctx.fillStyle = "#ffffff";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    return canvas;                
+                },
+
+                //把图像按照合适的方式绘制到空白Canvas之上
+                drawImgToCanvas (img, cvs) {
+                    let ctx = cvs.getContext("2d");
+                    ctx.drawImage(img, 0, 0, 100, 100);
+                    ctx.drawImage(img, 100, 0, 100, 100);
                 },
             //#endregion
 
@@ -241,6 +261,7 @@
                     };
                 },
 
+                //生成成员信息浮动窗体
                 qqWindowHtml (node) {
                     let temp = `
                         <div class="qqWindow">
@@ -260,6 +281,19 @@
                         </div>
                     `;
                     return temp;
+                },
+
+                headBall (node) {
+                    //新建标准网孔材质
+                    let ballMat = new THREE.MeshStandardMaterial( {
+                        color: "white",
+                        roughness: 0.4,
+                        metalness: 0.4,
+                    });
+                    let ballGeometry = new THREE.SphereGeometry(3, 32, 32);
+                    let ballMesh = new THREE.Mesh(ballGeometry, ballMat);
+                    ballMesh.rotation.y = Math.PI;
+                    return ballMesh;                   
                 },
             //#endregion
 
