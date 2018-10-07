@@ -6,11 +6,18 @@
 ## QQ群关系可视化查询，3D力导向图
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
 
-## 配置数据库
+## 配置数据库（需要磁盘剩余300GB空间）
++ 下载安装SqlServer2008R2
++ 下载[数据库备份文件](https://pan.baidu.com/s/1bz36WurfQIuyBRykyqXBug)
++ 恢复数据库到本机
 
 ## 搭建服务端
++ 下载安装Node.js环境
++ npm全局安装webpack和webpack-dev-server
 
 ## 运行
++ npm install
++ npm run start
 
 ## 操作系统要求
 + 因为使用的数据库是SqlServer数据库，所以推荐使用Windows操作系统
