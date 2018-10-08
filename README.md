@@ -14,7 +14,13 @@
 ## 2.搭建服务端（需要支持Nodejs的操作系统，CPU1核以上剩余内存1GB以上）
 + 下载安装[Node.js](https://nodejs.org/en/)环境
 + npm全局安装webpack和webpack-dev-server
+    ``` bash
+    # 全局安装webpack
+    npm install webpack -g
 
+    # 全局安装webpack-dev-server
+    npm install webpack-dev-server -g
+    ```
 ## 3.配置数据库连接
 + 进入项目目录下
 + 打开db.json文件
@@ -22,13 +28,13 @@
 
 ## 4.运行
 + 进入项目目录下
-``` bash
-# 安装依赖
-npm install
+    ``` bash
+    # 安装依赖
+    npm install
 
-# 运行系统
-npm run start
-```
+    # 运行系统
+    npm run start
+    ```
 
 ## 操作系统要求
 + 因为使用的数据库是SqlServer数据库，所以推荐使用Windows操作系统
