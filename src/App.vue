@@ -37,7 +37,7 @@
 <template>
     <el-container class="app">
         <el-header class="myHeader">
-            <!-- <span>QQ群数据库查询</span> -->
+            <span>QQ群数据库查询</span>
             <el-input class="searchInput" :placeholder="autoPlaceholder" v-model="searchNum">
                 <el-select v-model="searchType" slot="prepend">
                     <el-option label="QQ号" value="qq"></el-option>
@@ -82,12 +82,32 @@
         methods: {
             handleSearchClick () {
                 if (this.searchNum.trim()) {
-                    if (this.searchType == "qq") {
-                        this.$router.push(`/qqtable/${ this.searchNum }`);
+                    let dstUrl = "";
+                    if (this.$route.name.endsWith("Table")) {
+                        if (this.searchType == "qq") {
+                            dstUrl = `/qqtable/${ this.searchNum }`;
+                        }
+                        else if (this.searchType == "group") {
+                            dstUrl = `/grouptable/${ this.searchNum }`;
+                        }
                     }
-                    else if (this.searchType == "group") {
-                        this.$router.push(`/grouptable/${ this.searchNum }`);
+                    else if (this.$route.name == "viewGraph2d") {
+                        if (this.searchType == "qq") {
+                            dstUrl = `/qqtable/${ this.searchNum }`;
+                        }
+                        else if (this.searchType == "group") {
+                            dstUrl = `/grouptable/${ this.searchNum }`;
+                        }
                     }
+                    else if (this.$route.name == "viewGraph3d") {
+                        if (this.searchType == "qq") {
+                            dstUrl = `/qqtable/${ this.searchNum }`;
+                        }
+                        else if (this.searchType == "group") {
+                            dstUrl = `/grouptable/${ this.searchNum }`;
+                        }
+                    }
+                    this.$router.push(dstUrl);
                 }
                 else {
                     this.$message({
