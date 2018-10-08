@@ -15,8 +15,13 @@
 + 下载安装[Node.js](https://nodejs.org/en/)环境
 + npm全局安装webpack和webpack-dev-server
 
-## 运行
-+ 进入项目目录
+## 3.配置数据库连接
++ 进入项目目录下
++ 打开db.json文件
++ 修改其中的数据库连接信息为自己的数据库连接信息（默认的数据库连接信息是我本人的服务器上的数据库，不保证可用）
+
+## 4.运行
++ 进入项目目录下
 + npm install
 + npm run start
 
