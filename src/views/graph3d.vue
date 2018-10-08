@@ -2,14 +2,11 @@
 <style scoped>
     .viewGraph3d {
         position: fixed;
-        top: 0px;
+        top: 60px;
         left: 0px;
         width: 100%;
-        height: 100%;
-        padding-top: 60px;
+        bottom: 0px;
     }
-
-
 </style>
 
 <!--局部覆盖样式-->
@@ -98,10 +95,9 @@
         data () {
             return {
                 //#region 页面对象
+                    //力导向图对象
                     graph: null,
-
-                    cvs: null,
-
+                    //图片Map
                     imgMap: null,
                 //#endregion
 
@@ -115,7 +111,7 @@
             };
         },
         watch: {
-
+            "$route": "handleRouteChange",
         },
         computed: {
             //#region 常量计算属性
@@ -129,9 +125,22 @@
         },
         methods: {
             //#region 页面事件方法
+                //路由改变触发更新事件
+                handleRouteChange (nv) {
+                    this.searchType = nv.query.search;
+                    if (!this.searchType) {
+                        this.searchType = "qq";
+                    }
+                    this.searchNum = nv.query.num;
+                    if (!this.searchNum) {
+                        this.searchNum = "10001";
+                    }
+                    this.b_updateGraph();
+                },
             //#endregion
 
             //#region 业务逻辑方法
+                //更新图表
                 async b_updateGraph () {
                     let result = null;
                     if (this.searchType == "qq") {
@@ -169,7 +178,6 @@
                         .graphData(data);
                     }
                 },
-
                 //更新头像Map
                 async b_updateImgMap (data) {
                     let keyList = this.imgKeyList(data);
@@ -200,7 +208,6 @@
                         }
                     });
                 },
-
                 //新建一个用于绘制图像的Canvas
                 createCanvas () {
                     let canvas = document.createElement("canvas");
@@ -211,14 +218,12 @@
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     return canvas;                
                 },
-
                 //把图像按照合适的方式绘制到空白Canvas之上
                 drawImgToCanvas (img, cvs) {
                     let ctx = cvs.getContext("2d");
                     ctx.drawImage(img, 0, 0, 100, 100);
                     ctx.drawImage(img, 100, 0, 100, 100);
                 },
-
                 //根据图像生成适用于贴图的Canvas
                 buildCanvas (img) {
                     let cvs = this.createCanvas();
@@ -383,7 +388,7 @@
             //#region 其他方法
             //#endregion
         },
-        async created () {
+        created () {
             this.searchType = this.$route.query.search;
             if (!this.searchType) {
                 this.searchType = "qq";
@@ -392,10 +397,6 @@
             if (!this.searchNum) {
                 this.searchNum = "10001";
             }
-
-            let img = await this.getImg(this.qqImgUrl("1982775886"));
-            this.cvs = this.buildCanvas(img);
-
             this.b_updateGraph();
         },
         mounted () {

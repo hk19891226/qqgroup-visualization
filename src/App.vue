@@ -92,22 +92,14 @@
                         }
                     }
                     else if (this.$route.name == "viewGraph2d") {
-                        if (this.searchType == "qq") {
-                            dstUrl = `/qqtable/${ this.searchNum }`;
-                        }
-                        else if (this.searchType == "group") {
-                            dstUrl = `/grouptable/${ this.searchNum }`;
-                        }
+                        dstUrl = `/3d?search=${ this.searchType }&num=${ this.searchNum }`;
                     }
                     else if (this.$route.name == "viewGraph3d") {
-                        if (this.searchType == "qq") {
-                            dstUrl = `/qqtable/${ this.searchNum }`;
-                        }
-                        else if (this.searchType == "group") {
-                            dstUrl = `/grouptable/${ this.searchNum }`;
-                        }
+                        dstUrl = `/3d?search=${ this.searchType }&num=${ this.searchNum }`;
                     }
-                    this.$router.push(dstUrl);
+                    if (dstUrl) {
+                        this.$router.push(dstUrl);
+                    }
                 }
                 else {
                     this.$message({
