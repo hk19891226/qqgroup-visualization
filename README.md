@@ -22,8 +22,13 @@
 
 ## 4.运行
 + 进入项目目录下
-+ npm install
-+ npm run start
+``` bash
+# 安装依赖
+npm install
+
+# 运行系统
+npm run start
+```
 
 ## 操作系统要求
 + 因为使用的数据库是SqlServer数据库，所以推荐使用Windows操作系统
