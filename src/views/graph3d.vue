@@ -496,7 +496,11 @@
                         map: texture,
                     });
                     texture.needsUpdate = true;
-                    let ballGeometry = new THREE.SphereGeometry(3, 32, 32);
+                    let radius = 5;
+                    if (node.nodeType == "group") {
+                        radius = 9;
+                    }
+                    let ballGeometry = new THREE.SphereGeometry(radius, 16, 16);
                     let ballMesh = new THREE.Mesh(ballGeometry, ballMat);
                     ballMesh.rotation.y = Math.PI; 
 
@@ -504,9 +508,9 @@
                     let group = new THREE.Object3D();
                     group.add(ballMesh);
                     let nodeLabel = new SpriteText(node.nodeLabel);
-                    nodeLabel.textHeight = 3;
-                    nodeLabel.color = "#bbb";
-                    nodeLabel.position.y = -5.2;
+                    nodeLabel.textHeight = 5;
+                    nodeLabel.color = "#ddd";
+                    nodeLabel.position.y = -8;
                     group.add(nodeLabel);
                     return group;
                 },
