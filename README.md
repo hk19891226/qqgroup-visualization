@@ -1,7 +1,9 @@
 # qqgroup-visualization
 
 ## QQ群关系可视化查询，3D力导向图
-![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
+![效果图](https://github.com/gstok/qqgroup-visualization/blob/three/img/1.jpg)
+
+![效果图](https://github.com/gstok/qqgroup-visualization/blob/three/img/2.jpg)
 
 ## 新的分支[table](https://github.com/gstok/qqgroup-visualization/tree/table)表格方式查询
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/table/img/1.png)
