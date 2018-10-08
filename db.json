@@ -2,5 +2,6 @@
     "server": "123.206.204.118",
     "database": "QQGroup",
     "user": "sa",
-    "password": "gu@shi$hao^1993*"
+    "password": "gu@shi$hao^1993*",
+    "remark": "这是我的数据库的连接信息，有可能不可用，请部署好数据库之后更换成自己数据库的连接信息"
 }

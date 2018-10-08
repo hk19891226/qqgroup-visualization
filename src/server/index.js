@@ -171,7 +171,7 @@ async function main () {
             .use(hold404);
 
         app.listen(serverPort);
-        console.log(`服务已经启动，工作在 ${ serverPort } 端口...`.green);
+        console.log(`OK！现在后端服务已经启动，工作在 ${ serverPort } 端口，如需一直开启服务请不要关闭此进程...`.green);
     }
     catch (e) {
         console.error(e.message);
