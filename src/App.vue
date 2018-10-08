@@ -83,6 +83,7 @@
             handleSearchClick () {
                 if (this.searchNum.trim()) {
                     let dstUrl = "";
+                    console.log(this.$route.name);
                     if (this.$route.name.endsWith("Table")) {
                         if (this.searchType == "qq") {
                             dstUrl = `/qqtable/${ this.searchNum }`;

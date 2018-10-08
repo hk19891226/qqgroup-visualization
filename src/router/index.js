@@ -11,7 +11,7 @@ export default new Router({
     routes: [
         {
             path: "/",
-            name: "viewQQTable",
+            name: "viewGraph3d",
             component: viewGraph3d,
         },
         {
