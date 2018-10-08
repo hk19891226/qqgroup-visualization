@@ -99,10 +99,12 @@
     }
     .groupWindow > .memberInfoWarp {
         margin-top: 10px;
-        width: 100%;
+        width: 260px;
         height: 160px;
         border: solid 1px #999;
         background-color: rgba(51, 51, 51, 0.8);
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 </style>
 
@@ -247,7 +249,7 @@
                                 return this.groupWindowHtml(node);
                             }
                             else if (node.nodeType == "member") {
-                                return this.qqWindowHtml(node);
+                                return this.memberWindowHtml(node);
                             }
                             else {
                                 return "";
@@ -338,6 +340,10 @@
                             nodeValue: group,
                         };
                     });
+                    groupList.forEach(group => {
+                        let groupLinkList = linkList.filter(link => link.targetId == group.nodeId);
+                        group.memberNickList = groupLinkList.map(link => link.linkLabel);
+                    });
                     let memberList = data.member.map(member => {
                         return {
                             nodeId: member.memberQQNum,
@@ -399,7 +405,7 @@
                 },
 
                 //生成成员信息浮动窗体
-                qqWindowHtml (node) {
+                memberWindowHtml (node) {
                     let nickSet = new Set(node.nickList);
                     let nickList = Array.from(nickSet);
                     let nickListText = nickList.join("，");
@@ -422,8 +428,7 @@
                     `;
                     return temp;
                 },
-
-
+                //生成群信息浮动窗体
                 groupWindowHtml (node) {
                     let temp = `
                         <div class="groupWindow">
@@ -449,6 +454,7 @@
                                 </div>
                             </div>
                             <div class="memberInfoWarp">
+                                ${ node.memberNickList.join("，") }
                             </div>
                         </div>
                     `;
