@@ -6,13 +6,13 @@
 ## QQ群关系可视化查询，3D力导向图
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
 
-## 配置数据库（需要300GB以上磁盘剩余空间）
-+ 下载安装[SqlServer2008R2](ed2k://%7Cfile%7Ccn_sql_server_2008_r2_standard_x86_x64_ia64_dvd_522239.iso%7C4662884352%7C18EB3AE3828811617488F2CE8E5B8420%7C/)，配置好用户名以及密码，必要时需配置数据库允许远传登录
+## 1.配置数据库（需要300GB以上磁盘剩余空间）
++ 下载并安装SqlServer2008R2，配置好用户名以及登录密码，如果远程连接数据库的话，需配置数据库允许远程登录（SqlServer数据库配置教程请自行搜索教程）
 + 下载[数据库备份文件](https://pan.baidu.com/s/1bz36WurfQIuyBRykyqXBug)
-+ 解压压缩包，恢复数据库备份文件到SqlServer
++ 解压下载的压缩包，得到数据库备份文件，恢复数据库备份文件到SqlServer（SqlServer恢复数据库备份操作请自行搜索教程）
 
-## 搭建服务端
-+ 下载安装Node.js环境
+## 2.搭建服务端（需要支持Nodejs的操作系统，CPU1核以上剩余内存1GB以上）
++ 下载安装[Node.js](https://nodejs.org/en/)环境
 + npm全局安装webpack和webpack-dev-server
 
 ## 运行
