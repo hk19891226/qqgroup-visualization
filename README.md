@@ -1,40 +1,49 @@
 # qqgroup-visualization
 
-## 新的分支[table](https://github.com/gstok/qqgroup-visualization/tree/table)（整合服务端，npm run start直接启动）
-![效果图](https://github.com/gstok/qqgroup-visualization/blob/table/img/1.png)
-
 ## QQ群关系可视化查询，3D力导向图
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
 
+## 新的分支[table]表格方式查询(https://github.com/gstok/qqgroup-visualization/tree/table)
+![效果图](https://github.com/gstok/qqgroup-visualization/blob/table/img/1.png)
+
 ## 1.配置数据库（需要300GB以上磁盘剩余空间）
-+ 下载并安装SqlServer2008R2，配置好用户名以及登录密码，如果远程连接数据库的话，需配置数据库允许远程登录（SqlServer数据库配置教程请自行搜索教程）
++ 下载并安装SqlServer2008R2，配置好用户名以及登录密码，如果远程连接数据库的话，需配置数据库允许远程登录（SqlServer数据库配置请自行搜索教程）
 + 下载[数据库备份文件](https://pan.baidu.com/s/1bz36WurfQIuyBRykyqXBug)
-+ 解压下载的压缩包，得到数据库备份文件，恢复数据库备份文件到SqlServer（SqlServer恢复数据库备份操作请自行搜索教程）
++ 解压下载的压缩包，得到数据库备份文件，恢复数据库备份文件到SqlServer（SqlServer恢复数据库恢复操作请自行搜索教程）
 
 ## 2.搭建服务端（需要支持Nodejs的操作系统，CPU1核以上剩余内存1GB以上）
 + 下载安装[Node.js](https://nodejs.org/en/)环境
 + npm全局安装webpack和webpack-dev-server
-    ``` bash
-    # 全局安装webpack
-    npm install webpack -g
+``` bash
+# 全局安装webpack
+npm install webpack -g
 
-    # 全局安装webpack-dev-server
-    npm install webpack-dev-server -g
-    ```
+# 全局安装webpack-dev-server
+npm install webpack-dev-server -g
+```
 ## 3.配置数据库连接
 + 进入项目目录下
 + 打开db.json文件
 + 修改其中的数据库连接信息为自己的数据库连接信息（默认的数据库连接信息是我本人的服务器上的数据库，不保证可用）
+``` json
+{
+    "server": "123.206.204.118",
+    "database": "QQGroup",
+    "user": "sa",
+    "password": "gu@shi$hao^1993*",
+    "remark": "这是我的数据库的连接信息，有可能不可用，请部署好数据库之后更换成自己数据库的连接信息"
+}
+```
 
 ## 4.运行
 + 进入项目目录下
-    ``` bash
-    # 安装依赖
-    npm install
+``` bash
+# 安装依赖
+npm install
 
-    # 运行系统
-    npm run start
-    ```
+# 运行系统
+npm run start
+```
 
 ## 操作系统要求
 + 因为使用的数据库是SqlServer数据库，所以推荐使用Windows操作系统
