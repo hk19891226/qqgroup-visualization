@@ -340,6 +340,7 @@
                             nodeValue: group,
                         };
                     });
+                    //回查群员昵称列表
                     groupList.forEach(group => {
                         let groupLinkList = linkList.filter(link => link.targetId == group.nodeId);
                         group.memberNickList = groupLinkList.map(link => link.linkLabel);
@@ -356,6 +357,9 @@
                     memberList.forEach(member => {
                         let memberLinkList = linkList.filter(link => link.sourceId == member.nodeId);
                         member.nickList = memberLinkList.map(link => link.linkLabel);
+                        if (member.nickList.length > 0) {
+                            member.nodeLabel = member.nickList[0];
+                        }
                     });
                     let nodeList = groupList.concat(memberList);
                     return {
@@ -494,8 +498,12 @@
                     texture.needsUpdate = true;
                     let ballGeometry = new THREE.SphereGeometry(3, 32, 32);
                     let ballMesh = new THREE.Mesh(ballGeometry, ballMat);
-                    ballMesh.rotation.y = Math.PI;
-                    return ballMesh;
+                    ballMesh.rotation.y = Math.PI; 
+                    let group = new THREE.Object3D();
+                    group.add(ballMesh);
+                    let nodeLabel = new SpriteText(node.nodeLabel);
+                    group.add(nodeLabel);
+                    return group;
                 },
             //#endregion
 
