@@ -499,11 +499,14 @@
                     let ballGeometry = new THREE.SphereGeometry(3, 32, 32);
                     let ballMesh = new THREE.Mesh(ballGeometry, ballMat);
                     ballMesh.rotation.y = Math.PI; 
+
+                    //把头像球体和文字整合成为一个3D对象
                     let group = new THREE.Object3D();
                     group.add(ballMesh);
                     let nodeLabel = new SpriteText(node.nodeLabel);
                     nodeLabel.textHeight = 3;
                     nodeLabel.color = "#bbb";
+                    nodeLabel.position.y = -5.2;
                     group.add(nodeLabel);
                     return group;
                 },
