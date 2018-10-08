@@ -37,7 +37,7 @@
 <template>
     <el-container class="app">
         <el-header class="myHeader">
-            <span>QQ群数据库查询</span>
+            <!-- <span>QQ群数据库查询</span> -->
             <el-input class="searchInput" :placeholder="autoPlaceholder" v-model="searchNum">
                 <el-select v-model="searchType" slot="prepend">
                     <el-option label="QQ号" value="qq"></el-option>

@@ -101,6 +101,8 @@
                     graph: null,
 
                     cvs: null,
+
+                    imgMap: null,
                 //#endregion
 
                 //#region 页面内容绑定数据
@@ -140,6 +142,8 @@
                     }
                     if (result) {
                         let data = this.graphData(result);
+                        let keyList = this.imgKeyList(result);
+                        await this.b_updateImgMap(result);
                         this.graph
                         .nodeId("nodeId")
                         .linkSource("sourceId")
@@ -164,6 +168,12 @@
                         })
                         .graphData(data);
                     }
+                },
+
+                //更新头像Map
+                async b_updateImgMap (data) {
+                    let keyList = this.imgKeyList(data);
+                    this.imgMap = await this.getImgMap(keyList);
                 },
             //#endregion
 
@@ -270,6 +280,46 @@
                     };
                 },
 
+                //根据接口返回数据整理出去重后的图像Map键值
+                imgKeyList (data) {
+                    let list = data.group.map(item => `g${ item.groupNum }`);
+                    list = list.concat(data.member.map(item => `m${ item.memberQQNum }`));
+                    let dstSet = new Set(list);
+                    return Array.from(dstSet);
+                },
+
+                //异步获取头像Map，这里返回一个Promise
+                getImgMap (keyList) {
+                    let imgMap = new Map();
+                    return new Promise((resolve, reject) => {
+                        try {
+                            keyList.forEach(async keyStr => {
+                                let imgUrl = "";
+                                let num = keyStr.substring(1);
+                                if (keyStr.startsWith("g")) {
+                                    imgUrl = this.groupImgUrl(num);
+                                }
+                                else if (keyStr.startsWith("m")) {
+                                    imgUrl = this.qqImgUrl(num);
+                                }
+                                try {
+                                    let img = await this.getImg(imgUrl);
+                                    imgMap.set(keyStr, img);
+                                }
+                                catch (e) {
+                                    imgMap.set(keyStr, null);
+                                }
+                                if (imgMap.size == keyList.length) {
+                                    resolve(imgMap);
+                                }
+                            });
+                        }
+                        catch (e) {
+                            reject(e);
+                        }
+                    });
+                },
+
                 //生成成员信息浮动窗体
                 qqWindowHtml (node) {
                     let temp = `
@@ -293,7 +343,25 @@
                 },
 
                 headBall (node) {
-                    let texture = new THREE.Texture(this.cvs);
+                    let num = node.nodeId;
+                    let type = node.nodeType;
+                    let keyStr = "";
+                    if (type == "group") {
+                        keyStr = `g${ num }`;
+                    }
+                    else if (type == "member") {
+                        keyStr = `m${ num }`;
+                    }
+                    let img;
+                    if (this.imgMap.has(keyStr)) {
+                        img = this.imgMap.get(keyStr);
+                    }
+                    else {
+                        img = null;
+                    }
+                    let cvs = this.createCanvas();
+                    this.drawImgToCanvas(img, cvs);
+                    let texture = new THREE.Texture(cvs);
                     //新建标准网孔材质
                     let ballMat = new THREE.MeshStandardMaterial( {
                         color: "white",
