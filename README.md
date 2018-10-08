@@ -64,4 +64,4 @@ npm run start
         + queryTableByQQNum 传入QQ号查询QQ加群信息表
         
 ## 联系
-+ QQ：1982775886
++ 微信号：beijingxuesheng
