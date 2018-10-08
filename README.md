@@ -25,13 +25,13 @@ npm install webpack-dev-server -g
 + 进入项目目录下
 + 打开db.json文件
 + 修改其中的数据库连接信息为自己的数据库连接信息（默认的数据库连接信息是我本人的服务器上的数据库，不保证可用）
++ db.json例子
 ``` json
 {
-    "server": "123.206.204.118",
-    "database": "QQGroup",
-    "user": "sa",
-    "password": "gu@shi$hao^1993*",
-    "remark": "这是我的数据库的连接信息，有可能不可用，请部署好数据库之后更换成自己数据库的连接信息"
+    "server": "服务器地址",
+    "database": "数据库名称",
+    "user": "请输入用户名",
+    "password": "请输入数据库用户密码"
 }
 ```
 
