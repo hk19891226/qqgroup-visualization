@@ -509,7 +509,7 @@
                     group.add(ballMesh);
                     let nodeLabel = new SpriteText(node.nodeLabel);
                     nodeLabel.textHeight = 5;
-                    nodeLabel.color = "#ddd";
+                    nodeLabel.color = "#ccc";
                     nodeLabel.position.y = -8;
                     group.add(nodeLabel);
                     return group;
