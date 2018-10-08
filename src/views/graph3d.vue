@@ -430,6 +430,9 @@
                 },
                 //生成群信息浮动窗体
                 groupWindowHtml (node) {
+                    let nickSet = new Set(node.memberNickList);
+                    let nickList = Array.from(nickSet);
+                    let nickListText = nickList.join("，");
                     let temp = `
                         <div class="groupWindow">
                             <div class="groupInfoWarp">
@@ -454,7 +457,7 @@
                                 </div>
                             </div>
                             <div class="memberInfoWarp">
-                                ${ node.memberNickList.join("，") }
+                                ${ nickListText }
                             </div>
                         </div>
                     `;
