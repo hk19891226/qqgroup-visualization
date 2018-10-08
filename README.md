@@ -3,7 +3,7 @@
 ## QQ群关系可视化查询，3D力导向图
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/master/result/1.jpg)
 
-## 新的分支[table]表格方式查询(https://github.com/gstok/qqgroup-visualization/tree/table)
+## 新的分支[table](https://github.com/gstok/qqgroup-visualization/tree/table)表格方式查询
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/table/img/1.png)
 
 ## 1.配置数据库（需要300GB以上磁盘剩余空间）
