@@ -12,7 +12,7 @@ export default new Router({
         {
             path: "/",
             name: "viewQQTable",
-            component: viewQQTable,
+            component: viewGraph3d,
         },
         {
             path: "/qqtable/:num",
