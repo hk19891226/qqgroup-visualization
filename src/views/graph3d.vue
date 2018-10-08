@@ -502,6 +502,8 @@
                     let group = new THREE.Object3D();
                     group.add(ballMesh);
                     let nodeLabel = new SpriteText(node.nodeLabel);
+                    nodeLabel.textHeight = 3;
+                    nodeLabel.color = "#bbb";
                     group.add(nodeLabel);
                     return group;
                 },
