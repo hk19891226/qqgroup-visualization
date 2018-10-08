@@ -6,6 +6,8 @@
 ## 新的分支[table](https://github.com/gstok/qqgroup-visualization/tree/table)表格方式查询
 ![效果图](https://github.com/gstok/qqgroup-visualization/blob/table/img/1.png)
 
+## *目前项目连接的是我个人的数据库，可直接npm run start运行，如果我的数据库失效，请下载数据库备份文件自己配置数据库*
+
 ## 1.配置数据库（需要300GB以上磁盘剩余空间）
 + 下载并安装SqlServer2008R2，配置好用户名以及登录密码，如果远程连接数据库的话，需配置数据库允许远程登录（SqlServer数据库配置请自行搜索教程）
 + 下载[数据库备份文件](https://pan.baidu.com/s/1bz36WurfQIuyBRykyqXBug)
