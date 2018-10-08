@@ -5,9 +5,11 @@
   "author": "鸡毛 <shihao.gu@perfma.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "node src/shell/index.js",
-    "build": "node build/build.js"
+    "dev": "node src/shell/index.js",
+    "start": "npm run dev",
+    "build": "node build/build.js",
+    "website": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "server": "node src/server/index.js"
   },
   "dependencies": {
     "3d-force-graph": "^1.39.0",
