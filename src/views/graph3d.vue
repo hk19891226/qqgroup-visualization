@@ -21,36 +21,88 @@
         font-size: 12px;
         color: #ddd;
     }
-
     .qqWindow > img {
         width: 100px;
         height: 100px;
         border: solid 1px #999;
     }
-
     .qqWindow > .infoWarp {
         width: 150px;
         height: 100px;
         margin-left: 10px;
     }
-
     .qqWindow > .infoWarp label {
         color: white;
         font-weight: bold;
     }
-
-    .qqWindow > .infoWarp > div {
+    .qqWindow > .infoWarp > .fieldWarp {
         height: 20px;
     }
-
-    .qqWindow > .infoWarp > ul {
+    .qqWindow > .infoWarp > .nickWarp {
         box-sizing: border-box;
-        list-style-type: none;
         margin: 0px;
         padding: 0px;
         height: 60px;
         overflow-y: auto;
         border: solid 1px #999;
+        background-color: rgba(51, 51, 51, 0.8);
+    }
+
+    .groupWindow {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 10px;
+        background-color: rgba(51, 51, 51, 0.7);
+        border-radius: 4px;
+        font-size: 12px;
+        color: #ddd;   
+    }
+    .groupWindow img {
+        box-sizing: border-box;
+        width: 100px;
+        height: 100px;
+        border: solid 1px #999;
+    }
+    .groupWindow label {
+        color: white;
+        font-weight: bold;
+    }
+    .groupWindow > .groupInfoWarp {
+        width: 100%;
+        height: 100px;
+        display: flex;
+    }
+    .groupWindow > .groupInfoWarp > .fieldInfoWarp {
+        width: 160px;
+        height: 100px;
+        padding-left: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .groupWindow > .groupInfoWarp > .fieldInfoWarp > div {
+        height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .groupWindow > .groupInfoWarp > .fieldInfoWarp > div:last-child {
+        height: 36px;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        white-space: unset;     
+    }
+    .groupWindow > .memberInfoWarp {
+        margin-top: 10px;
+        width: 100%;
+        height: 160px;
+        border: solid 1px #999;
+        background-color: rgba(51, 51, 51, 0.8);
     }
 </style>
 
@@ -75,6 +127,31 @@
                     <li>你好，世界</li>
                     <li>你好，世界</li>
                 </ul>
+            </div>
+        </div> -->
+        <!-- <div class="groupWindow">
+            <div class="groupInfoWarp">
+                <img :src="groupImgUrl('462687926')" />
+                <div class="fieldInfoWarp">
+                    <div>
+                        <label>群名称：</label>
+                        <span></span>
+                    </div>
+                    <div>
+                        <label>群号：</label>
+                        <span></span>
+                    </div>
+                    <div>
+                        <label>创建时间：</label>
+                        <span></span>
+                    </div>
+                    <div>
+                        <label>群简介：</label>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="memberInfoWarp">
             </div>
         </div> -->
         <div class="graph"></div>
@@ -166,14 +243,15 @@
                             return this.headBall(node);
                         })
                         .nodeLabel(node => {
-                            let imgUrl = "";
                             if (node.nodeType == "group") {
-                                imgUrl = this.groupImgUrl(node.nodeId);
+                                return this.groupWindowHtml(node);
                             }
                             else if (node.nodeType == "member") {
-                                imgUrl = this.qqImgUrl(node.nodeId);
+                                return this.qqWindowHtml(node);
                             }
-                            return this.qqWindowHtml(node);
+                            else {
+                                return "";
+                            }
                         })
                         .graphData(data);
                     }
@@ -268,15 +346,10 @@
                             nodeValue: member,
                         };
                     });
-                    //回查群成员节点群昵称信息
+                    //回查群成员群昵称信息
                     memberList.forEach(member => {
-                        let link = linkList.find(link => link.sourceId == member.nodeId);
-                        if (link) {
-                            member.nodeLabel = link.linkLabel;
-                        }
-                        else {
-                            member.nodeLabel = "未知QQ昵称";
-                        }
+                        let memberLinkList = linkList.filter(link => link.sourceId == member.nodeId);
+                        member.nickList = memberLinkList.map(link => link.linkLabel);
                     });
                     let nodeList = groupList.concat(memberList);
                     return {
@@ -327,20 +400,55 @@
 
                 //生成成员信息浮动窗体
                 qqWindowHtml (node) {
+                    let nickSet = new Set(node.nickList);
+                    let nickList = Array.from(nickSet);
+                    let nickListText = nickList.join("，");
                     let temp = `
                         <div class="qqWindow">
                             <img src="${ this.qqImgUrl(node.nodeId) }" />
                             <div class="infoWarp">
-                                <div>
+                                <div class="fieldWarp">
                                     <label>QQ:</label>
                                     <span>${ node.nodeId }</span>
                                 </div>
-                                <div>
+                                <div class="fieldWarp">
                                     <label>群内昵称：</label>
                                 </div>
-                                <ul>
-                                    <li>${ node.nodeLabel }</li>
-                                </ul>
+                                <div class="nickWarp">
+                                    ${ nickListText }
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    return temp;
+                },
+
+
+                groupWindowHtml (node) {
+                    let temp = `
+                        <div class="groupWindow">
+                            <div class="groupInfoWarp">
+                                <img src="${ this.groupImgUrl(node.nodeId) }" />
+                                <div class="fieldInfoWarp">
+                                    <div>
+                                        <label>群名称：</label>
+                                        <span>${ node.nodeValue.groupTitle }</span>
+                                    </div>
+                                    <div>
+                                        <label>群号：</label>
+                                        <span>${ node.nodeId }</span>
+                                    </div>
+                                    <div>
+                                        <label>创建时间：</label>
+                                        <span>${ node.nodeValue.groupCreateDate }</span>
+                                    </div>
+                                    <div>
+                                        <label>群简介：</label>
+                                        <span>${ node.nodeValue.groupSummary }</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="memberInfoWarp">
                             </div>
                         </div>
                     `;
