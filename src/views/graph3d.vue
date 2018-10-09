@@ -211,9 +211,9 @@
                         let keyList = this.imgKeyList(result);
                         await this.b_updateImgMap(result);
                         this.graph
-                        // .backgroundColor("#cae4f5")
+                        .backgroundColor("#cae4f5")
                         .linkColor(link => {
-                            let color = "white";
+                            let color = "rgb(120, 120, 120)";
                             let auth = link.linkValue.linkAuth;
                             if (auth == 4) {
                                 color = "red";
