@@ -167,19 +167,23 @@
             //#region 页面事件方法
                 //路由改变触发更新事件
                 handleRouteChange (nv) {
-                    this.searchType = nv.query.search;
+                    this.b_updateRoute();
+                },
+            //#endregion
+
+            //#region 业务逻辑方法
+                //根据路由更新图表
+                b_updateRoute () {
+                    this.searchType = this.$route.query.search;
                     if (!this.searchType) {
                         this.searchType = "qq";
                     }
-                    this.searchNum = nv.query.num;
+                    this.searchNum = this.$route.query.num;
                     if (!this.searchNum) {
                         this.searchNum = "10001";
                     }
                     this.b_updateGraph();
                 },
-            //#endregion
-
-            //#region 业务逻辑方法
                 //更新图表
                 async b_updateGraph () {
                     this.loading = true;
@@ -272,15 +276,14 @@
             //#endregion
 
             //#region 数据转换方法
-                //获取QQ头像的Url地址
-                qqImgUrl (qqNum) {
+                //获取群成员头像的Url地址
+                memberImgUrl (qqNum) {
                     return `/qqimg?dst_uin=${ qqNum }&spec=100`;
                 },
                 //获取群头像的Url地址
                 groupImgUrl (groupNum) {
                     return `/groupimg/${ groupNum }/${ groupNum }/100`;
                 },
-
                 //根据接口返回数据格式整理出力导向图实际可用的数据格式
                 graphData (data) {
                     let linkList = data.link.map(link => {
@@ -326,7 +329,6 @@
                         links: linkList,
                     };
                 },
-
                 //根据接口返回数据整理出去重后的图像Map键值
                 imgKeyList (data) {
                     let list = data.group.map(item => `g${ item.groupNum }`);
@@ -347,7 +349,7 @@
                                     imgUrl = this.groupImgUrl(num);
                                 }
                                 else if (keyStr.startsWith("m")) {
-                                    imgUrl = this.qqImgUrl(num);
+                                    imgUrl = this.memberImgUrl(num);
                                 }
                                 try {
                                     let img = await this.getImg(imgUrl);
@@ -374,7 +376,7 @@
                     let nickListText = nickList.join("，");
                     let temp = `
                         <div class="qqWindow">
-                            <img src="${ this.qqImgUrl(node.nodeId) }" />
+                            <img src="${ this.memberImgUrl(node.nodeId) }" />
                             <div class="infoWarp">
                                 <div class="fieldWarp">
                                     <label>QQ:</label>
@@ -427,6 +429,7 @@
                     return temp;
                 },
 
+                //生成头像球体
                 headBall (node) {
                     let num = node.nodeId;
                     let type = node.nodeType;
@@ -482,15 +485,7 @@
             //#endregion
         },
         created () {
-            this.searchType = this.$route.query.search;
-            if (!this.searchType) {
-                this.searchType = "qq";
-            }
-            this.searchNum = this.$route.query.num;
-            if (!this.searchNum) {
-                this.searchNum = "10001";
-            }
-            this.b_updateGraph();
+            this.b_updateRoute();
         },
         mounted () {
             const forceGraph3D = ForceGraph3D();
