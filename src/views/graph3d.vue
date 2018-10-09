@@ -208,41 +208,49 @@
                     }
                     if (result) {
                         let data = this.graphData(result);
-                        let keyList = this.imgKeyList(result);
-                        await this.b_updateImgMap(result);
-                        this.graph
-                        .backgroundColor("#cae4f5")
-                        .linkColor(link => {
-                            let color = "rgb(120, 120, 120)";
-                            let auth = link.linkValue.linkAuth;
-                            if (auth == 4) {
-                                color = "red";
-                            }
-                            else if (auth == 2) {
-                                color = "green";
-                            }
-                            return color;
-                        })
-                        .linkOpacity(0.7)
-                        .nodeId("nodeId")
-                        .linkSource("sourceId")
-                        .linkTarget("targetId")
-                        .nodeAutoColorBy("nodeId")
-                        .nodeThreeObject(node => {
-                            return this.headBall(node);
-                        })
-                        .nodeLabel(node => {
-                            if (node.nodeType == "group") {
-                                return this.groupWindowHtml(node);
-                            }
-                            else if (node.nodeType == "member") {
-                                return this.memberWindowHtml(node);
-                            }
-                            else {
-                                return "";
-                            }
-                        })
-                        .graphData(data);
+                        if (data.nodes.length < 1) {
+                            this.$message({
+                                type: "success",
+                                message: "未查询到关系信息！",
+                            });
+                        }
+                        else {
+                            let keyList = this.imgKeyList(result);
+                            await this.b_updateImgMap(result);
+                            this.graph
+                            .backgroundColor("#cae4f5")
+                            .linkColor(link => {
+                                let color = "rgb(120, 120, 120)";
+                                let auth = link.linkValue.linkAuth;
+                                if (auth == 4) {
+                                    color = "red";
+                                }
+                                else if (auth == 2) {
+                                    color = "green";
+                                }
+                                return color;
+                            })
+                            .linkOpacity(0.7)
+                            .nodeId("nodeId")
+                            .linkSource("sourceId")
+                            .linkTarget("targetId")
+                            .nodeAutoColorBy("nodeId")
+                            .nodeThreeObject(node => {
+                                return this.headBall(node);
+                            })
+                            .nodeLabel(node => {
+                                if (node.nodeType == "group") {
+                                    return this.groupWindowHtml(node);
+                                }
+                                else if (node.nodeType == "member") {
+                                    return this.memberWindowHtml(node);
+                                }
+                                else {
+                                    return "";
+                                }
+                            })
+                            .graphData(data);
+                        }
                     }
                     this.loading = false;
                 },
@@ -365,33 +373,38 @@
                 //异步获取头像Map，这里返回一个Promise
                 getImgMap (keyList) {
                     let imgMap = new Map();
-                    return new Promise((resolve, reject) => {
-                        try {
-                            keyList.forEach(async keyStr => {
-                                let imgUrl = "";
-                                let num = keyStr.substring(1);
-                                if (keyStr.startsWith("g")) {
-                                    imgUrl = this.groupImgUrl(num);
-                                }
-                                else if (keyStr.startsWith("m")) {
-                                    imgUrl = this.memberImgUrl(num);
-                                }
-                                try {
-                                    let img = await this.getImg(imgUrl);
-                                    imgMap.set(keyStr, img);
-                                }
-                                catch (e) {
-                                    imgMap.set(keyStr, null);
-                                }
-                                if (imgMap.size == keyList.length) {
-                                    resolve(imgMap);
-                                }
-                            });
-                        }
-                        catch (e) {
-                            reject(e);
-                        }
-                    });
+                    if (keyList.length < 1) {
+                        return imgMap;
+                    }
+                    else {
+                        return new Promise((resolve, reject) => {
+                            try {
+                                keyList.forEach(async keyStr => {
+                                    let imgUrl = "";
+                                    let num = keyStr.substring(1);
+                                    if (keyStr.startsWith("g")) {
+                                        imgUrl = this.groupImgUrl(num);
+                                    }
+                                    else if (keyStr.startsWith("m")) {
+                                        imgUrl = this.memberImgUrl(num);
+                                    }
+                                    try {
+                                        let img = await this.getImg(imgUrl);
+                                        imgMap.set(keyStr, img);
+                                    }
+                                    catch (e) {
+                                        imgMap.set(keyStr, null);
+                                    }
+                                    if (imgMap.size == keyList.length) {
+                                        resolve(imgMap);
+                                    }
+                                });
+                            }
+                            catch (e) {
+                                reject(e);
+                            }
+                        });
+                    }
                 },
 
                 //生成成员信息浮动窗体
