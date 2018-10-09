@@ -223,7 +223,6 @@
                             }
                             return color;
                         })
-                        .linkWidth(0.5)
                         .linkOpacity(0.7)
                         .nodeId("nodeId")
                         .linkSource("sourceId")
