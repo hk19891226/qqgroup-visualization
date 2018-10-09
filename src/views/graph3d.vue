@@ -114,7 +114,7 @@
         v-loading="loading"
         element-loading-text="加载中..."
         element-loading-spinner="el-icon-loading"
-        element-loading-background="rgba(0, 0, 0, 0.8)">
+        element-loading-background="rgba(0, 0, 0, 0.5)">
         <div class="graph"></div>
     </div>
 </template>
@@ -135,6 +135,10 @@
                 //#region 页面对象
                     //力导向图对象
                     graph: null,
+                    //图像摄像机
+                    graphCamera: null,
+                    //图像渲染器
+                    graphRender: null,
                     //图片Map
                     imgMap: null,
                 //#endregion
@@ -199,6 +203,7 @@
                         let keyList = this.imgKeyList(result);
                         await this.b_updateImgMap(result);
                         this.graph
+                        .backgroundColor("#cae4f5")
                         .nodeId("nodeId")
                         .linkSource("sourceId")
                         .linkTarget("targetId")
@@ -482,6 +487,15 @@
             //#endregion
 
             //#region 其他方法
+                //重置显示区域大小
+                onThreeResize () {
+                    let $this = $(this.$el);
+                    let width = $this.width();
+                    let height = $this.height();
+                    this.graphCamera.aspect = width / height;
+                    this.graphCamera.updateProjectionMatrix();
+                    this.graphRender.setSize(width, height);
+                },
             //#endregion
         },
         created () {
@@ -490,6 +504,9 @@
         mounted () {
             const forceGraph3D = ForceGraph3D();
             this.graph = forceGraph3D(this.$el.querySelector(".graph"));
+            this.graphCamera = this.graph.camera();
+            this.graphRender = this.graph.renderer();
+            window.addEventListener("resize", this.onThreeResize, false);
         },
         components: {
 
