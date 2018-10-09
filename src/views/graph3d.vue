@@ -211,7 +211,20 @@
                         let keyList = this.imgKeyList(result);
                         await this.b_updateImgMap(result);
                         this.graph
-                        .backgroundColor("#cae4f5")
+                        // .backgroundColor("#cae4f5")
+                        .linkColor(link => {
+                            let color = "#999";
+                            let auth = link.linkValue.linkAuth;
+                            if (auth == 4) {
+                                color = "red";
+                            }
+                            else if (auth == 2) {
+                                color = "green";
+                            }
+                            return color;
+                        })
+                        .linkWidth(0.5)
+                        .linkOpacity(0.7)
                         .nodeId("nodeId")
                         .linkSource("sourceId")
                         .linkTarget("targetId")
