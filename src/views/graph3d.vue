@@ -218,9 +218,9 @@
                             let keyList = this.imgKeyList(result);
                             await this.b_updateImgMap(result);
                             this.graph
-                            .backgroundColor("#cae4f5")
+                            // .backgroundColor("#cae4f5")
                             .linkColor(link => {
-                                let color = "rgb(120, 120, 120)";
+                                let color = "rgb(140, 140, 140)";
                                 let auth = link.linkValue.linkAuth;
                                 if (auth == 4) {
                                     color = "red";
@@ -230,7 +230,7 @@
                                 }
                                 return color;
                             })
-                            .linkOpacity(0.7)
+                            .linkOpacity(1)
                             .nodeId("nodeId")
                             .linkSource("sourceId")
                             .linkTarget("targetId")
@@ -509,7 +509,7 @@
                     group.add(ballMesh);
                     let nodeLabel = new SpriteText(node.nodeLabel);
                     nodeLabel.textHeight = 5;
-                    nodeLabel.color = "#ccc";
+                    nodeLabel.color = "white";
                     nodeLabel.position.y = -8;
                     group.add(nodeLabel);
                     return group;
