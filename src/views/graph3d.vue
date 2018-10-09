@@ -267,8 +267,8 @@
                 //新建一个用于绘制图像的Canvas
                 createCanvas () {
                     let canvas = document.createElement("canvas");
-                    canvas.width = 200;
-                    canvas.height = 100;
+                    canvas.width = 128;
+                    canvas.height = 64;
                     let ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#ffffff";
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -277,8 +277,8 @@
                 //把图像按照合适的方式绘制到空白Canvas之上
                 drawImgToCanvas (img, cvs) {
                     let ctx = cvs.getContext("2d");
-                    ctx.drawImage(img, 0, 0, 100, 100);
-                    ctx.drawImage(img, 100, 0, 100, 100);
+                    ctx.drawImage(img, 0, 0, 64, 64);
+                    ctx.drawImage(img, 64, 0, 64, 64);
                 },
                 //根据图像生成适用于贴图的Canvas
                 buildCanvas (img) {
