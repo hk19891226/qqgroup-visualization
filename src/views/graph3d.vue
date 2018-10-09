@@ -176,6 +176,14 @@
             //#endregion
 
             //#region 业务逻辑方法
+                //初始化图表
+                b_graphInit () {
+                    const forceGraph3D = ForceGraph3D();
+                    this.graph = forceGraph3D(this.$el.querySelector(".graph"));
+                    this.graphCamera = this.graph.camera();
+                    this.graphRender = this.graph.renderer();
+                    window.addEventListener("resize", this.onThreeResize, false);
+                },
                 //根据路由更新图表
                 b_updateRoute () {
                     this.searchType = this.$route.query.search;
@@ -499,14 +507,11 @@
             //#endregion
         },
         created () {
-            this.b_updateRoute();
+
         },
         mounted () {
-            const forceGraph3D = ForceGraph3D();
-            this.graph = forceGraph3D(this.$el.querySelector(".graph"));
-            this.graphCamera = this.graph.camera();
-            this.graphRender = this.graph.renderer();
-            window.addEventListener("resize", this.onThreeResize, false);
+            this.b_graphInit();
+            this.b_updateRoute();
         },
         components: {
 
