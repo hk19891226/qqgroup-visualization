@@ -213,7 +213,7 @@
                         this.graph
                         // .backgroundColor("#cae4f5")
                         .linkColor(link => {
-                            let color = "#999";
+                            let color = "white";
                             let auth = link.linkValue.linkAuth;
                             if (auth == 4) {
                                 color = "red";
