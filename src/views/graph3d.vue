@@ -109,53 +109,12 @@
 </style>
 
 <template>
-    <div class="viewGraph3d">
-        <!-- <div class="qqWindow">
-            <img :src="qqImgUrl('1982775886')" />
-            <div class="infoWarp">
-                <div>
-                    <label>QQ:</label>
-                    <span>1982775886</span>
-                </div>
-                <div>
-                    <label>群内昵称：</label>
-                </div>
-                <ul>
-                    <li>你好，世界</li>
-                    <li>你好，世界</li>
-                    <li>你好，世界</li>
-                    <li>你好，世界</li>
-                    <li>你好，世界</li>
-                    <li>你好，世界</li>
-                    <li>你好，世界</li>
-                </ul>
-            </div>
-        </div> -->
-        <!-- <div class="groupWindow">
-            <div class="groupInfoWarp">
-                <img :src="groupImgUrl('462687926')" />
-                <div class="fieldInfoWarp">
-                    <div>
-                        <label>群名称：</label>
-                        <span></span>
-                    </div>
-                    <div>
-                        <label>群号：</label>
-                        <span></span>
-                    </div>
-                    <div>
-                        <label>创建时间：</label>
-                        <span></span>
-                    </div>
-                    <div>
-                        <label>群简介：</label>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="memberInfoWarp">
-            </div>
-        </div> -->
+    <div
+        class="viewGraph3d"
+        v-loading="loading"
+        element-loading-text="加载中..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)">
         <div class="graph"></div>
     </div>
 </template>
@@ -183,6 +142,8 @@
                 //#region 页面内容绑定数据
                     searchType: "qq",
                     searchNum: "",
+
+                    loading: false,
                 //#endregion
 
                 //#region 页面样式绑定数据
@@ -221,6 +182,7 @@
             //#region 业务逻辑方法
                 //更新图表
                 async b_updateGraph () {
+                    this.loading = true;
                     let result = null;
                     if (this.searchType == "qq") {
                         result = await api.queryQQExtGraph(this.searchNum);
@@ -238,10 +200,6 @@
                         .linkTarget("targetId")
                         .nodeAutoColorBy("nodeId")
                         .nodeThreeObject(node => {
-                            // const sprite = new SpriteText(node.nodeLabel);
-                            // sprite.color = node.color;
-                            // sprite.textHeight = 8;
-                            // return sprite;
                             return this.headBall(node);
                         })
                         .nodeLabel(node => {
@@ -257,6 +215,7 @@
                         })
                         .graphData(data);
                     }
+                    this.loading = false;
                 },
                 //更新头像Map
                 async b_updateImgMap (data) {
