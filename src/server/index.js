@@ -3,6 +3,7 @@ const Koa = require("koa");
 const KoaRouter = require("koa-router");
 const KoaStatic = require("koa-static");
 const MSSQL = require("mssql");
+const Moment = require("moment");
 const colors = require("colors");
 const fs = require("fs");
 
@@ -36,9 +37,8 @@ function setCtx500 (ctx) {
 //记录每一次请求信息到日志文件的中间件
 function holdAll (ctx, next) {
     let path = ctx.path;
-    let time = (new Date()).toLocaleString();
     let ip = ctx.ip;
-    fs.appendFile("log.txt", `${ ip } ${ time } ${ path }\r\n`, err => { });
+    fs.appendFile("log.txt", `${ ip } ${ Moment(new Date).format("YYYY-MM-DD HH:mm:ss") } ${ path }\r\n`, err => { });
     return next();
 }
 
@@ -162,6 +162,36 @@ async function main () {
             catch (e) {
                 setCtx500(ctx);
             }
+        });
+
+        router.get("/api/querylog", async (ctx, next) => {
+            try {
+                let fileContent = fs.readFileSync("log.txt").toString();
+                let logList = fileContent.split("\n").map(item => item.trim()).filter(item => item).map(text => {
+                    let textSeg = text.split(" ");
+                    let url = textSeg[3];
+                    let urlSeg = url.split("/");
+                    let apiName = urlSeg[2];
+                    let apiNum = urlSeg[3];
+                    return {
+                        ip: textSeg[0],
+                        time: Number(new Date(textSeg[1] + " " + textSeg[2])),
+                        url: textSeg[3],
+                        apiName: apiName,
+                        apiNum: apiNum,
+                    };
+                }).sort((a, b) => b.time - a.time);
+                let code = 200;
+                ctx.status = code;
+                ctx.body = {
+                    code: code,
+                    data: logList,
+                    msg: "查询成功",
+                };
+            }
+            catch (e) {
+                setCtx500(ctx);
+            }  
         });
 
         app

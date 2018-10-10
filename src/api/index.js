@@ -56,11 +56,23 @@ async function api_queryGroupTable (groupNum) {
     }
 }
 
+async function api_queryLog () {
+    let reqUrl = `/api/querylog`;
+    let response = await Http.fetch(reqUrl);
+    if (response.code == 200) {
+        return response.data;
+    }
+    else {
+        return [];
+    }
+}
+
 export const queryQQGraph = api_queryQQGraph;
 export const queryQQExtGraph = api_queryQQExtGraph;
 export const queryGroupGraph = api_queryGroupGraph;
 export const queryQQTable = api_queryQQTable;
 export const queryGroupTable = api_queryGroupTable;
+export const queryLog = api_queryLog;
 
 export default {
     queryQQGraph: api_queryQQGraph,
@@ -68,4 +80,5 @@ export default {
     queryGroupGraph: api_queryGroupGraph,
     queryQQTable: api_queryQQTable,
     queryGroupTable: api_queryGroupTable,
+    queryLog: api_queryLog,
 };
