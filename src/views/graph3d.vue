@@ -194,6 +194,21 @@
                     if (!this.searchNum) {
                         this.searchNum = "10001";
                     }
+                    let num = parseInt(this.searchNum);
+                    if (isNaN(num)) {
+                        this.$message({
+                            type: "warning",
+                            message: "查询内容输入非法！",
+                        });
+                        return;
+                    }
+                    if (num < 0 || num > 2147483647) {
+                        this.$message({
+                            type: "warning",
+                            message: "数据库暂未收录相关信息！",
+                        });
+                        return;
+                    }
                     this.b_updateGraph();
                 },
                 //更新图表
