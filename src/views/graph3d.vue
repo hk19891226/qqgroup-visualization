@@ -120,10 +120,12 @@
 </template>
 
 <script>
-    import api from "@/api";
     import * as THREE from "three";
     import ForceGraph3D from "3d-force-graph";
     import SpriteText from "three-spritetext";
+    import api from "@/api";
+    import defaultMemberImg from "@/assets/images/qq.jpeg";
+    import defaultGroupImg from "@/assets/images/group.jpg";
 
     export default {
         name: "viewGraph3d",
@@ -160,6 +162,18 @@
         },
         computed: {
             //#region 常量计算属性
+                //群成员默认头像
+                autoDefaultMemberImg () {
+                    let img = new Image();
+                    img.src = defaultMemberImg;
+                    return img;
+                },
+                //群默认头像
+                autoDefaultGroupImg () {
+                    let img = new Image();
+                    img.src = defaultGroupImg;
+                    return img;
+                },
             //#endregion
 
             //#region 数据转换计算属性
@@ -282,7 +296,7 @@
 
             //#region 资源访问方法
                 //传入图片Url获取图片资源，返回一个Promise对象
-                getImg (url, timeout = 60000) {
+                getImg (url, timeout = 30000) {
                     return new Promise((resolve, reject) => {
                         try {
                             let imgObj = new Image();
@@ -401,10 +415,13 @@
                                 keyList.forEach(async keyStr => {
                                     let imgUrl = "";
                                     let num = keyStr.substring(1);
+                                    let type = "member";
                                     if (keyStr.startsWith("g")) {
+                                        type = "group";
                                         imgUrl = this.groupImgUrl(num);
                                     }
                                     else if (keyStr.startsWith("m")) {
+                                        type = "member";
                                         imgUrl = this.memberImgUrl(num);
                                     }
                                     try {
@@ -412,7 +429,12 @@
                                         imgMap.set(keyStr, img);
                                     }
                                     catch (e) {
-                                        imgMap.set(keyStr, null);
+                                        if (type == "member") {
+                                            imgMap.set(keyStr, this.autoDefaultMemberImg);
+                                        }
+                                        else {
+                                            imgMap.set(keyStr, this.autoDefaultGroupImg);
+                                        }
                                     }
                                     this.loadingText = `获取头像资源中(${ imgMap.size }/${ keyList.length })...`;
                                     if (imgMap.size == keyList.length) {
