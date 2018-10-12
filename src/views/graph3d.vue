@@ -112,7 +112,7 @@
     <div
         class="viewGraph3d"
         v-loading="loading"
-        element-loading-text="加载中..."
+        :element-loading-text="loadingText"
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(0, 0, 0, 0.5)">
         <div class="graph"></div>
@@ -148,6 +148,7 @@
                     searchNum: "",
 
                     loading: false,
+                    loadingText: "",
                 //#endregion
 
                 //#region 页面样式绑定数据
@@ -214,6 +215,7 @@
                 //更新图表
                 async b_updateGraph () {
                     this.loading = true;
+                    this.loadingText = "获取关系数据中...";
                     let result = null;
                     if (this.searchType == "qq") {
                         result = await api.queryQQExtGraph(this.searchNum);
@@ -230,8 +232,10 @@
                             });
                         }
                         else {
+                            this.loadingText = "获取头像资源中...";
                             let keyList = this.imgKeyList(result);
                             await this.b_updateImgMap(result);
+                            this.loadingText = "开始绘制图表...";
                             this.graph
                             // .backgroundColor("#cae4f5")
                             .linkColor(link => {
@@ -410,6 +414,7 @@
                                     catch (e) {
                                         imgMap.set(keyStr, null);
                                     }
+                                    this.loadingText = `获取头像资源中(${ imgMap.size }/${ keyList.length })...`;
                                     if (imgMap.size == keyList.length) {
                                         resolve(imgMap);
                                     }
