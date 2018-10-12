@@ -296,7 +296,7 @@
 
             //#region 资源访问方法
                 //传入图片Url获取图片资源，返回一个Promise对象
-                getImg (url, timeout = 30000) {
+                getImg (url, timeout = 60000) {
                     return new Promise((resolve, reject) => {
                         try {
                             let imgObj = new Image();
