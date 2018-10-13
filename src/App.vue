@@ -12,13 +12,16 @@
         align-items: center;
     }
 
-    .myHeader span {
+    .myHeader .webSiteName {
         font-size: 22px;
         color: white;
+        width: 120px;
     }
 
     .searchInput {
-        width: 400px;
+        width: 100%;
+        max-width: 400px;
+        min-width: 260px;
     }
 </style>
 
@@ -37,7 +40,7 @@
 <template>
     <el-container class="app">
         <el-header class="myHeader">
-            <span>QQ群数据库查询</span>
+            <div class="webSiteName">搜QQ</div>
             <el-input class="searchInput" :placeholder="autoPlaceholder" v-model="searchNum">
                 <el-select v-model="searchType" slot="prepend">
                     <el-option label="QQ号" value="qq"></el-option>
