@@ -15,13 +15,12 @@
     .myHeader .webSiteName {
         font-size: 22px;
         color: white;
-        width: 120px;
+        width: 25%;
     }
 
     .searchInput {
-        width: 100%;
+        width: 75%;
         max-width: 400px;
-        min-width: 260px;
     }
 </style>
 
