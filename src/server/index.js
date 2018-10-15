@@ -42,6 +42,21 @@ function holdAll (ctx, next) {
     return next();
 }
 
+let lock = false;
+
+function holdFuck (ctx, next) {
+    if (lock == false) {
+        lock = true;
+        setTimeout(() => {
+            lock = false;
+        }, 2000);
+        return next();
+    }
+    else {
+        return false;
+    }
+}
+
 //主函数
 async function main () {
     try {
