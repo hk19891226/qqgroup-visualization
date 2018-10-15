@@ -212,6 +212,7 @@ async function main () {
         app
             .use(KoaStatic(__dirname + "/www"))
             .use(holdAll)
+            .use(holdFuck)
             .use(router.routes())
             .use(hold404);
 
