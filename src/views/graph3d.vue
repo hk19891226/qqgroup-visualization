@@ -344,11 +344,11 @@
             //#region 数据转换方法
                 //获取群成员头像的Url地址
                 memberImgUrl (qqNum) {
-                    return `/qqimg?dst_uin=${ qqNum }&spec=100`;
+                    return `/images/qq/${ qqNum }`;
                 },
                 //获取群头像的Url地址
                 groupImgUrl (groupNum) {
-                    return `/groupimg/${ groupNum }/${ groupNum }/100`;
+                    return `/images/group/${ groupNum }`;
                 },
                 //根据接口返回数据格式整理出力导向图实际可用的数据格式
                 graphData (data) {
