@@ -11,26 +11,30 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        "/api": {
+        "/qqgroup3d/api": {
             target: "http://localhost:10241/",
             changeOrigin: true,
             secure: false,
         },
-        "/qqimg": {
+        "/qqgroup3d/images/qq/": {
             target: "http://q2.qlogo.cn/",
             changeOrigin: true,
             secure: false,
-            pathRewrite: {
-                "^/qqimg": "/headimg_dl"
-            }
+            pathRewrite: (path, req) => {
+                let pathSeg = path.split("/");
+                let num = pathSeg[pathSeg.length - 1];
+                return `/headimg_dl?dst_uin=${ num }&spec=100`;
+            },
         },
-        "/groupimg": {
+        "/qqgroup3d/images/group/": {
             target: "http://p.qlogo.cn/",
             changeOrigin: true,
             secure: false,
-            pathRewrite: {
-                "^/groupimg": "/gh"
-            }
+            pathRewrite: (path, req) => {
+                let pathSeg = path.split("/");
+                let num = pathSeg[pathSeg.length - 1];
+                return `/gh/${ num }/${ num }/100/`;
+            },
         },
     },
 
