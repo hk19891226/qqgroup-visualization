@@ -61,13 +61,13 @@
             <el-table-column
                 label="加群名称">
                 <template slot-scope="scope">
-                    <a class="pageLink" :href="`/#/grouptable/${ scope.row.groupNum }`">{{ scope.row.groupTitle }}</a>
+                    <a class="pageLink" :href="`/qqgroup3d/#/grouptable/${ scope.row.groupNum }`">{{ scope.row.groupTitle }}</a>
                 </template>
             </el-table-column>
             <el-table-column
                 label="群号">
                 <template slot-scope="scope">
-                    <a class="pageLink" :href="`/#/grouptable/${ scope.row.groupNum }`">{{ scope.row.groupNum }}</a>
+                    <a class="pageLink" :href="`/qqgroup3d/#/grouptable/${ scope.row.groupNum }`">{{ scope.row.groupNum }}</a>
                 </template>
             </el-table-column>
             <el-table-column

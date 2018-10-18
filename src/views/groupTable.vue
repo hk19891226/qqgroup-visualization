@@ -80,13 +80,13 @@
             <el-table-column
                 label="成员昵称">
                 <template slot-scope="scope">
-                    <a class="pageLink" :href="`/#/qqtable/${ scope.row.memberQQNum }`">{{ scope.row.memberNick }}</a>
+                    <a class="pageLink" :href="`/qqgroup3d/#/qqtable/${ scope.row.memberQQNum }`">{{ scope.row.memberNick }}</a>
                 </template>
             </el-table-column>
             <el-table-column
                 label="QQ号">
                 <template slot-scope="scope">
-                    <a class="pageLink" :href="`/#/qqtable/${ scope.row.memberQQNum }`">{{ scope.row.memberQQNum }}</a>
+                    <a class="pageLink" :href="`/qqgroup3d/#/qqtable/${ scope.row.memberQQNum }`">{{ scope.row.memberQQNum }}</a>
                 </template>
             </el-table-column>
             <el-table-column
