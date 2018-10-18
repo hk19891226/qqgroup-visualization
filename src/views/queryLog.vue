@@ -60,11 +60,11 @@
                     <img
                         class="headImg"
                         v-if="scope.row.apiName && scope.row.apiName.startsWith('qq')"
-                        :src="`/images/qq/${ scope.row.apiNum }`" />
+                        :src="`/qqgroup3d/images/qq/${ scope.row.apiNum }`" />
                     <img
                         class="headImg"
                         v-if="scope.row.apiName && scope.row.apiName.startsWith('group')"
-                        :src="`/images/group/${ scope.row.apiNum }`" />
+                        :src="`/qqgroup3d/images/group/${ scope.row.apiNum }`" />
                 </template>
             </el-table-column>
         </el-table>

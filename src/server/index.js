@@ -49,7 +49,7 @@ function holdFuck (ctx, next) {
         lock = true;
         setTimeout(() => {
             lock = false;
-        }, 2000);
+        }, 1000);
         return next();
     }
     else {

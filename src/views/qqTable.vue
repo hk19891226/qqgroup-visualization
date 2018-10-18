@@ -43,7 +43,7 @@
 <template>
     <div class="viewQQTable">
         <div class="qqInfoWarp">
-            <img :src="`/images/qq/${ searchNum }`" />
+            <img :src="`/qqgroup3d/images/qq/${ searchNum }`" />
             <span>{{ searchNum }}</span>
         </div>
         <label class="tableLabel">QQ加群信息：</label>
@@ -55,7 +55,7 @@
             border>
             <el-table-column>
                 <template slot-scope="scope">
-                    <img class="headImg" :src="`/images/group/${ scope.row.groupNum }`" />
+                    <img class="headImg" :src="`/qqgroup3d/images/group/${ scope.row.groupNum }`" />
                 </template>
             </el-table-column>
             <el-table-column

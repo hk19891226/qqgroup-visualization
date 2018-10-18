@@ -39,7 +39,7 @@
             :data="groupList">
             <el-table-column>
                 <template slot-scope="scope">
-                    <img class="headImg" :src="`/images/group/${ searchNum }`" />
+                    <img class="headImg" :src="`/qqgroup3d/images/group/${ searchNum }`" />
                 </template>
             </el-table-column>
             <el-table-column
@@ -74,7 +74,7 @@
             :data="memberList">
             <el-table-column>
                 <template slot-scope="scope">
-                    <img class="headImg" :src="`/images/qq/${ scope.row.memberQQNum }`" />
+                    <img class="headImg" :src="`/qqgroup3d/images/qq/${ scope.row.memberQQNum }`" />
                 </template>
             </el-table-column>
             <el-table-column
