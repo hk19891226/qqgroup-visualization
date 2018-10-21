@@ -39,7 +39,7 @@
             :data="groupList">
             <el-table-column>
                 <template slot-scope="scope">
-                    <img class="headImg" :src="`/groupimg/${ searchNum }/${ searchNum }/100`" />
+                    <img class="headImg" :src="`/qqgroup3d/images/group/${ searchNum }`" />
                 </template>
             </el-table-column>
             <el-table-column
@@ -74,19 +74,19 @@
             :data="memberList">
             <el-table-column>
                 <template slot-scope="scope">
-                    <img class="headImg" :src="`/qqimg?dst_uin=${ scope.row.memberQQNum }&spec=100`" />
+                    <img class="headImg" :src="`/qqgroup3d/images/qq/${ scope.row.memberQQNum }`" />
                 </template>
             </el-table-column>
             <el-table-column
                 label="成员昵称">
                 <template slot-scope="scope">
-                    <a class="pageLink" :href="`/#/qqtable/${ scope.row.memberQQNum }`">{{ scope.row.memberNick }}</a>
+                    <a class="pageLink" :href="`/qqgroup3d/#/qqtable/${ scope.row.memberQQNum }`">{{ scope.row.memberNick }}</a>
                 </template>
             </el-table-column>
             <el-table-column
                 label="QQ号">
                 <template slot-scope="scope">
-                    <a class="pageLink" :href="`/#/qqtable/${ scope.row.memberQQNum }`">{{ scope.row.memberQQNum }}</a>
+                    <a class="pageLink" :href="`/qqgroup3d/#/qqtable/${ scope.row.memberQQNum }`">{{ scope.row.memberQQNum }}</a>
                 </template>
             </el-table-column>
             <el-table-column

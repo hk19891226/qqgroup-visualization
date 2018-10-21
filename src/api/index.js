@@ -2,7 +2,7 @@
 import Http from "../http";
 
 async function api_queryQQGraph (qqNum) {
-    let reqUrl = `/api/qq/${ qqNum }`;
+    let reqUrl = `/qqgroup3d/api/qq/${ qqNum }`;
     let response = await Http.fetch(reqUrl);
     if (response.code == 200) {
         return response.data;
@@ -13,7 +13,7 @@ async function api_queryQQGraph (qqNum) {
 }
 
 async function api_queryQQExtGraph (qqNum) {
-    let reqUrl = `/api/qqext/${ qqNum }`;
+    let reqUrl = `/qqgroup3d/api/qqext/${ qqNum }`;
     let response = await Http.fetch(reqUrl);
     if (response.code == 200) {
         return response.data;
@@ -24,7 +24,7 @@ async function api_queryQQExtGraph (qqNum) {
 }
 
 async function api_queryGroupGraph (groupNum) {
-    let reqUrl = `/api/group/${ groupNum }`;
+    let reqUrl = `/qqgroup3d/api/group/${ groupNum }`;
     let response = await Http.fetch(reqUrl);
     if (response.code == 200) {
         return response.data;
@@ -35,7 +35,7 @@ async function api_queryGroupGraph (groupNum) {
 }
 
 async function api_queryQQTable (qqNum) {
-    let reqUrl = `/api/qqtable/${ qqNum }`;
+    let reqUrl = `/qqgroup3d/api/qqtable/${ qqNum }`;
     let response = await Http.fetch(reqUrl);
     if (response.code == 200) {
         return response.data;
@@ -46,7 +46,7 @@ async function api_queryQQTable (qqNum) {
 }
 
 async function api_queryGroupTable (groupNum) {
-    let reqUrl = `/api/grouptable/${ groupNum }`;
+    let reqUrl = `/qqgroup3d/api/grouptable/${ groupNum }`;
     let response = await Http.fetch(reqUrl);
     if (response.code == 200) {
         return response.data;
@@ -57,7 +57,7 @@ async function api_queryGroupTable (groupNum) {
 }
 
 async function api_queryLog () {
-    let reqUrl = `/api/querylog`;
+    let reqUrl = `/qqgroup3d/api/querylog`;
     let response = await Http.fetch(reqUrl);
     if (response.code == 200) {
         return response.data;

@@ -43,7 +43,7 @@
 <template>
     <div class="viewQQTable">
         <div class="qqInfoWarp">
-            <img :src="`/qqimg?dst_uin=${ searchNum }&spec=640`" />
+            <img :src="`/qqgroup3d/images/qq/${ searchNum }`" />
             <span>{{ searchNum }}</span>
         </div>
         <label class="tableLabel">QQ加群信息：</label>
@@ -55,19 +55,19 @@
             border>
             <el-table-column>
                 <template slot-scope="scope">
-                    <img class="headImg" :src="`/groupimg/${ scope.row.groupNum }/${ scope.row.groupNum }/100`" />
+                    <img class="headImg" :src="`/qqgroup3d/images/group/${ scope.row.groupNum }`" />
                 </template>
             </el-table-column>
             <el-table-column
                 label="加群名称">
                 <template slot-scope="scope">
-                    <a class="pageLink" :href="`/#/grouptable/${ scope.row.groupNum }`">{{ scope.row.groupTitle }}</a>
+                    <a class="pageLink" :href="`/qqgroup3d/#/grouptable/${ scope.row.groupNum }`">{{ scope.row.groupTitle }}</a>
                 </template>
             </el-table-column>
             <el-table-column
                 label="群号">
                 <template slot-scope="scope">
-                    <a class="pageLink" :href="`/#/grouptable/${ scope.row.groupNum }`">{{ scope.row.groupNum }}</a>
+                    <a class="pageLink" :href="`/qqgroup3d/#/grouptable/${ scope.row.groupNum }`">{{ scope.row.groupNum }}</a>
                 </template>
             </el-table-column>
             <el-table-column

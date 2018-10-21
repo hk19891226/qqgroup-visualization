@@ -60,11 +60,11 @@
                     <img
                         class="headImg"
                         v-if="scope.row.apiName && scope.row.apiName.startsWith('qq')"
-                        :src="`/qqimg?dst_uin=${ scope.row.apiNum }&spec=100`" />
+                        :src="`/qqgroup3d/images/qq/${ scope.row.apiNum }`" />
                     <img
                         class="headImg"
                         v-if="scope.row.apiName && scope.row.apiName.startsWith('group')"
-                        :src="`/groupimg/${ scope.row.apiNum }/${ scope.row.apiNum }/100`" />
+                        :src="`/qqgroup3d/images/group/${ scope.row.apiNum }`" />
                 </template>
             </el-table-column>
         </el-table>
@@ -134,16 +134,16 @@
                     let url = "/#/";
                     let num = row.apiNum;
                     if (row.apiName == "qqext") {
-                        url = `/#/3d?search=qq&num=${ num }`;
+                        url = `/qqgroup3d/#/3d?search=qq&num=${ num }`;
                     }
                     else if (row.apiName == "group") {
-                        url = `/#/3d?search=group&num=${ num }`;
+                        url = `/qqgroup3d/#/3d?search=group&num=${ num }`;
                     }
                     else if (row.apiName == "qqtable") {
-                        url = `/#/qqtable/${ num }`;
+                        url = `/qqgroup3d/#/qqtable/${ num }`;
                     }
-                    else if (row.apiName == "") {
-                        url = `/#/grouptable/${ num }`;
+                    else if (row.apiName == "grouptable") {
+                        url = `/qqgroup3d/#/grouptable/${ num }`;
                     }
                     return url;
                 },
